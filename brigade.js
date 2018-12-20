@@ -24,7 +24,7 @@ events.on("push", function(e, project) {
     "sleep 20", // Grant it enough time to be up and running
     "cd /src/", // Go to the project checkout dir
     "docker build -t $GCR_REPONAME/$GCR_IMAGE:latest .", // Replace with your own image tag
-    "docker login -u $DOCKER_USER -p $DOCKER_PASS",
+    "docker login $GCR_REPONAME -u $DOCKER_USER -p $DOCKER_PASS",
     "docker push $GCR_REPONAME/$GCR_IMAGE:latest" // Replace with your own image tag
   ]
   
