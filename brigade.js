@@ -29,6 +29,10 @@ events.on("push", function(e, project) {
   ]
   
   dockerBuild.run()
+  
+  az login --service-principal -u $serviceuser -p $servicepass --tenant $servicetenant
+  az aks get-credentials --resource-group Myk8s --name Myk8s
+  kubectl set image deployment/nginx nginx=$mygcr/$gcrimage:latest
 
   })  
 
