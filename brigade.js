@@ -44,7 +44,11 @@ events.on("push", function(e, project) {
 
   deploy.tasks = [
   "cd /src/app/web"
-  "az aks install-cli"
+  "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+  "(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)"
+  "curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl"
+  "chmod +x ./kubectl"
+  "sudo mv ./kubectl /usr/local/bin/kubectl"
   "az login --service-principal -u $SERVICE_USER -p $SERVICE_PASS --tenant $SERVICETENANT",
   "az aks get-credentials --resource-group Myk8s --name Myk8s",
   "kubectl set image deployment/nginx nginx=$GCR_REPONAME/$GCR_IMAGE:latest"
