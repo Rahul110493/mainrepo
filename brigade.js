@@ -6,7 +6,7 @@ events.on("push", function(e, project) {
 
   var deploy = new Job("docker-deploy")
 
-  deploy.image = "microsoft/azure-cli:2.0.41"
+  deploy.image = "microsoft/azure-cli:latest"
 
   deploy.env.SERVICE_USER = project.secrets.serviceuser 
   deploy.env.SERVICE_PASS = project.secrets.servicepass
