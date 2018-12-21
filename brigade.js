@@ -15,7 +15,11 @@ events.on("push", function(e, project) {
   deploy.env.GCR_IMAGE = project.secrets.gcrimage
 
 
-  deploy.tasks = [
+  deploy.tasks = [ 
+  "curl -L https://dl.k8s.io/v1.10.6/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl",
+  "sleep 90",
+  "cd /usr/local/bin",
+  "chmod -R 775 kubectl",
   "az login --service-principal -u $SERVICE_USER -p $SERVICE_PASS --tenant $SERVICETENANT",
   "az aks get-credentials --resource-group Myk8s --name Myk8s",
   "kubectl set image deployment/nginx nginx=$GCR_REPONAME/$GCR_IMAGE:latest"
