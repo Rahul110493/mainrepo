@@ -15,7 +15,8 @@ events.on("push", function(e, project) {
   deploy.env.GCR_IMAGE = project.secrets.gcrimage
 
 
-  deploy.tasks = [ 
+  deploy.tasks = [
+ 
   "curl -L https://dl.k8s.io/v1.10.6/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl",
   "sleep 90",
   "cd /usr/local/bin",
