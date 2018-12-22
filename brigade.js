@@ -22,7 +22,6 @@ events.on("push", function(e, project) {
   "chmod -R 775 kubectl",
   "az login --service-principal -u $SERVICE_USER -p $SERVICE_PASS --tenant $SERVICETENANT",
   "az aks get-credentials --resource-group Myk8s --name Myk8s",
-  "helm get pods",
   "kubectl set image deployment/nginx nginx=$GCR_REPONAME/$GCR_IMAGE:latest"
   ]
 
